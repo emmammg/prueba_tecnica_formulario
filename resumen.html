@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Recibidos</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h4>Datos del Paciente Ingresados</h4>
+        <div id="datos" class="datos"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const datosDiv = document.getElementById('datos');
+
+            const criterios = {
+                'sexo': 'No hay información',
+                'fecha_nacimiento': 'No hay información'
+            };
+
+            const formatosTitulos = {
+                'itemInput': 'Diagnóstico',
+                'fecha_nacimiento': 'Fecha de nacimiento',
+                'nombre_completo': 'Nombre completo',
+                'temperatura': 'Temperatura',
+                'estatura': 'Estatura',
+                'peso': 'Peso',
+                'saturacion': 'Saturación de oxígeno',
+                'motivo': 'Motivo de consulta',
+                'sexo': 'Sexo'
+            };
+
+            if (!params.has('sexo')) {
+                params.set('sexo', 'No especificado');
+            }
+
+            for (const key of params.keys()) {
+                const p = document.createElement('p');
+                const texto = params.get(key) || criterioss[key] || 'Información no ingresada';
+                const tituloFormateado = formatosTitulos[key] || key.replace('_', ' ');
+                p.textContent = `${tituloFormateado}: ${texto}`;
+                datosDiv.appendChild(p);
+            }
+        });
+    </script>        
+</body>
+</html>

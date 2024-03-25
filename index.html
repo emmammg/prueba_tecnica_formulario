@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Formulario consulta médica</title>
+</head>
+
+<body>
+    <div class="container">
+        <form method="post" action="resumen.html" id="formConsulta" novalidate>
+            <h4>Datos del paciente</h4>
+            <div class="form-example">
+                <label for="nombreCompleto">Nombre Completo: </label>
+                <input type="text" name="nombre_completo" id="nombreCompleto" required />
+                <span class="error"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-example">
+                    <label for="fechaNacimiento">Fecha de nacimiento: </label>
+                    <input type="date" name="fecha_nacimiento" id="fechaNacimiento" required />
+                    <span class="error"></span>
+                </div>
+                <div class="form-example">
+                    <label for="sexo">Sexo: </label>
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="sexo" value="F" /> Mujer</label>
+                        <label class="radio-label"><input type="radio" name="sexo" value="M" /> Hombre</label>
+                        <label class="radio-label"><input type="radio" name="sexo" value="N" /> Ninguno</label>
+                    </div>
+                    <span class="error"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-example">
+                    <label for="itemInput">Diagnósticos: </label>
+                    <input list="itemsDatalist" id="itemInput" name="itemInput" placeholder="Selecciona una opción">
+                    <datalist id="itemsDatalist">
+                    </datalist>
+                    <span class="error"></span>
+                </div>
+            </div>
+            
+            <h4>Datos Antropométricos</h4>
+            <div class="form-row">
+                <div class="form-example">
+                    <label for="temperaturaPaciente">Temperatura (°C): </label>
+                    <input class="atropometrico" type="text" name="temperatura" id="temperaturaPaciente" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" required />
+                    <span class="error"></span>
+                </div>
+                <div class="form-example">
+                    <label for="estaturaPaciente">Estatura (cm): </label>
+                    <input class="atropometrico" type="text" name="estatura" id="estaturaPaciente" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" required />
+                    <span class="error"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-example">
+                    <label for="pesoPaciente">Peso (kg): </label>
+                    <input class="atropometrico" type="text" name="peso" id="pesoPaciente" maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" required />
+                    <span class="error"></span>
+                </div>
+                <div class="form-example">
+                    <label for="saturacionPaciente">Saturación de oxígeno (%): </label>
+                    <input class="atropometrico" type="text" name="saturacion" id="saturacionPaciente"  maxlength="3" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" required />
+                    <span class="error"></span>
+                </div>
+            </div>
+
+            <h4>Datos Adicionales</h4>
+            <div class="form-example">
+                <label for="motivoConsulta">Motivo de consulta: </label>
+                <textarea name="motivo" id="motivoConsulta"></textarea>
+                <span class="error"></span>
+            </div>
+
+            <div class="form-button">
+                <button type="submit" id="btnEnviar">Enviar</button>
+            </div>
+        </form>
+    </div> 
+        <script src="assets/js/form-validation.js"></script>        
+        <script src="assets/js/api.js"></script>
+</body>
+</html>
